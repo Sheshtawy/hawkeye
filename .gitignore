@@ -1,0 +1,6 @@
+# VS Code
+.vscode/
+
+# IPython
+*.ipynb
+.ipynb_checkpoints
