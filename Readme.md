@@ -23,13 +23,51 @@ s `PKCS1_OAEP` standards (asymmetric encryption/decryption using an RSA key pair
 
 4. Add hawkeye dir to python path: `export PYTHONPATH="${PYTHONPATH}:/path/to/hawkeye"`
 
+5. Make sure your ssh server is up and running. You can use this command `sudo systemctl restart sshd`
+_NOTE: The command might differ depending on your OS_
+
+6. Install Postgresql version <= 9.3
+
+7. Run the `db_script.sql` in order to create the database.
+
+8. !!! Change credentials and configurations in the `settings.py`
+
 ## Usage
 
-### Run the demo
-1. Activate the virtualenv: `source /path/to/env_hawkeye/bin/activate`
-2. Change credentials in `main()` function in `hawkeye.py` to valid credentials
-3. Run `python /path/to/hawkeye/source/hawkeye.py`
+### Run Hawkeye in your terminal
 
+1. Activate the virtualenv: `source /path/to/env_hawkeye/bin/activate`
+2. Prepare `config.xml` file that contains configurations to all network nodes that will
+be monitored
+3. Run `python /path/to/hawkeye/source/hawkeye.py -h` for more info
+
+```
+(env_hawkeye)[user@localhost]$ python /path/to/hawkeye/source/hawkeye.py -h
+
+usage: hawkeye.py [-h] xml_config_path
+
+A tool for monitoring machines in an intranet.
+
+positional arguments:
+  xml_config_path  path to xml config file for nodes you want to monitor
+
+optional arguments:
+  -h, --help       show this help message and exit
+
+```
+
+4. Run `python /path/to/hawkeye/source/hawkeye.py /path/to/config.xml`
+
+```
+(env_hawkeye)[user@localhost]$ python /path/to/hawkeye/source/hawkeye.py /path/to/config.xml
+
+INFO:Hawkeye: Initializing clients list
+INFO:Hawkeye: Parsing config 
+...
+...
+
+
+```
 IMPORTANT NOTE: make sure the requirements for the client script are met on all clients to be monitored as mentioned in the Assumptions section above.
 
 ### Use Hawkeye module

@@ -5,17 +5,17 @@ import jsonschema
 
 class AbstractDriver(metaclass=abc.ABCMeta):
     """Generic interface for DB Drivers."""
-    def __init__(self, credentials):
+    def __init__(self, **credentials):
         super().__init__()
         try:
-            from utils.schemas.db_credentials_schema import DB_CREDENTIALS_SCHEMA
+            from source.utils.schemas.db_credentials_schema import DB_CREDENTIALS_SCHEMA
             jsonschema.validate(credentials, DB_CREDENTIALS_SCHEMA)
         except jsonschema.ValidationError as error:
             print(error)
-        self.host = credentials.host
-        self.port = credentials.port
-        self.username = credentials.username
-        self.password = credentials.password
+        self.host = credentials['host']
+        self.port = credentials['port']
+        self.username = credentials['username']
+        self.password = credentials['password']
 
     @abc.abstractmethod
     def create(self, data):

@@ -5,6 +5,8 @@ import base64
 from Crypto.Cipher import PKCS1_OAEP
 import logging
 
+from source.settings import SMTP_SENDER_EMAIL
+
 logging.getLogger().setLevel(logging.INFO)
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
 
@@ -54,7 +56,7 @@ class Client:
 
     def execute_script(self, script_name):
         """Execute a script that has been already uploaded to the client.
-        
+     
         :param script_name: name of the script to be executed
         """
         cmds = [
@@ -78,11 +80,14 @@ class Client:
         :param stats_entry: stats_entry retrieved from the client
         """
         logging.info('Client(%s): stats_entry %s', self.ip_address, stats_entry)
+        client = db_driver.retrieve('hawkeye_db', 'clients', 'ip_address', self.ip_address)
+        stats_entry['client_id'] = client[0]
+        db_driver.create('hawkeye_db', 'stats', stats_entry)
         logging.info('Client(%s): stats entry has been saved to DB', self.ip_address)
 
     def decrypt(self, cipher_text, key):
         """Decrypts an encrypted message.
-        
+       
         It uses PKCS1_OAEP protocol (assymmetric encryption/decryption)
         :param cipher_text: the encrypted message
         :param key: RSA private key to decrypt the message
@@ -93,12 +98,12 @@ class Client:
 
     def check_alerts(self, stats_entry):
         """Check if a stats entry met any alert limit.
-        
+       
         In case a limit is met or bypassed an email will be sent
         to the email address associated with the client
         :param stats_entry: stats_entry retrieved from the client
         """
         for alert in self.alerts:
-            if stats_entry[alert.type] >= alert.limit:
-                message = alert.create_message('from_addr', self.email)
-                alert.send(message)
+            if stats_entry[alert.type] >= float(alert.limit[:-1]):
+                message = alert.create_message(SMTP_SENDER_EMAIL, self.email, stats_entry[alert.type])
+                alert.send(SMTP_SENDER_EMAIL, [self.email], message)
