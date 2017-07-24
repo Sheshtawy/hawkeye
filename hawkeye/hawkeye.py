@@ -1,10 +1,10 @@
 import xmltodict
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
-from source.client import Client
-from source import settings
-from source.alert import Alert
-from source.utils.db_drivers.postgres_driver import PostgresDriver
+from hawkeye.client import Client
+from hawkeye import settings
+from hawkeye.alert import Alert
+from hawkeye.utils.db_drivers.postgres_driver import PostgresDriver
 import json
 import logging
 import argparse
