@@ -16,7 +16,7 @@ SMTP_SERVER_SETTINGS = {
     'host': 'smtp.gmail.com',
     'port': 587,
     'username': 'hisham.elsheshtawy@gmail.com',
-    'password': 'Icandoitbefore25'
+    'password': 'test'
 }
 
 SMTP_SENDER_EMAIL = 'hisham.elsheshtawy@gmail.com'
