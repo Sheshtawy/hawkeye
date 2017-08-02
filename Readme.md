@@ -89,7 +89,6 @@ IMPORTANT NOTE: make sure the requirements for the client script are met on all 
 </root>
 ```
 2. Import `hawkeye` into your application:
-
 ```
 from hawkeye.source.hawkeye import Hawkeye
 
