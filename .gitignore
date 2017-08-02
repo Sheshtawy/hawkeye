@@ -72,5 +72,5 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 # keys
+private_key
 *key
-private_*
