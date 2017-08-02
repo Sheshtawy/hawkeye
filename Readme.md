@@ -73,6 +73,7 @@ IMPORTANT NOTE: make sure the requirements for the client script are met on all 
 ### Use Hawkeye module
 
 1. Create a config file with all your clients credentials. Use the following example as a reference:
+
 ```
 <root>
     <client ip="127.0.0.1" port="22" username="user" password="password" mail="asa@asda.com">
@@ -89,6 +90,7 @@ IMPORTANT NOTE: make sure the requirements for the client script are met on all 
 </root>
 ```
 2. Import `hawkeye` into your application:
+
 ```
 from hawkeye.source.hawkeye import Hawkeye
 
