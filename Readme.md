@@ -89,15 +89,18 @@ IMPORTANT NOTE: make sure the requirements for the client script are met on all 
 </root>
 ```
 2. Import `hawkeye` into your application:
+
 ```
 from hawkeye.source.hawkeye import Hawkeye
 
-hawkeye = Hawkeye(xml_config) # config created in step 1
+# config created in step 1
+hawkeye = Hawkeye(xml_config)
 hawkeye.run()
 
 ```
 
 ## Enhancements/Requirements:
+
 (Enhancements that weren't implemented due to lack of time)
 
 1. More unit tests
