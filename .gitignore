@@ -71,3 +71,6 @@ wheels/
 pip-log.txt
 pip-delete-this-directory.txt
 
+# keys
+*key
+private_*

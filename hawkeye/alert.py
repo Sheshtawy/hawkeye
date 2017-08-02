@@ -1,6 +1,7 @@
 import logging
-from hawkeye.utils.emailer import Emailer
-from hawkeye.settings import SMTP_SERVER_SETTINGS
+
+from settings import SMTP_SERVER_SETTINGS
+from utils.emailer import Emailer
 
 logging.getLogger().setLevel(logging.INFO)
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)

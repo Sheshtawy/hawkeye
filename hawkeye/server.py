@@ -1,13 +1,12 @@
 import xmltodict
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
-from hawkeye.client import Client
-from hawkeye import settings
-from hawkeye.alert import Alert
-from hawkeye.utils.db_drivers.postgres_driver import PostgresDriver
+from client import Client
+import settings
+from alert import Alert
+from utils.db_drivers.postgres_driver import PostgresDriver
 import json
 import logging
-import argparse
 
 PRIVATE_KEY = RSA.importKey(open(settings.PRIVATE_KEY_PATH).read())
 class Hawkeye:
@@ -59,20 +58,3 @@ class Hawkeye:
             client.save(self.db_driver, stats_entry)
             client.check_alerts(stats_entry)
             client.disconnect()
-            
-def main():
-    """Run the module."""
-    parser = argparse.ArgumentParser(
-        description='A tool for monitoring machines in an intranet.'
-    )
-    parser.add_argument(
-        'xml_config_path', 
-        help="path to xml config file for nodes you want to monitor"
-    )
-    args = parser.parse_args()
-    xml_config = open(args.xml_config_path, 'r').read()
-    hawkeye = Hawkeye(xml_config)
-    hawkeye.run()
-
-if __name__ == '__main__':
-    main()

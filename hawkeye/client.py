@@ -1,11 +1,11 @@
 import os
 import paramiko
-from hawkeye import utils
+import utils
 import base64
 from Crypto.Cipher import PKCS1_OAEP
 import logging
 
-from hawkeye.settings import SMTP_SENDER_EMAIL
+from settings import SMTP_SENDER_EMAIL
 
 logging.getLogger().setLevel(logging.INFO)
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
