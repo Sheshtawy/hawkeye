@@ -1,3 +1,6 @@
+[![Updates](https://pyup.io/repos/github/Sheshtawy/hawkeye/shield.svg)](https://pyup.io/repos/github/Sheshtawy/hawkeye/)
+[![Python 3](https://pyup.io/repos/github/Sheshtawy/hawkeye/python-3-shield.svg)](https://pyup.io/repos/github/Sheshtawy/hawkeye/)
+
 # Hawkeye (alpha)
 A tool for monitoring machines in an intranet. 
 
