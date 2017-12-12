@@ -23,9 +23,9 @@ def client():
     sample_client = Client(
         '127.0.0.1',
         port=22,
-        username='sheshtawy',
-        password='a happy secret',
-        mail='hisham.elsheshtawy@gmail.com',
+        username=settings.CLIENT_TESTING_CREDENTIALS['username'],
+        password=settings.CLIENT_TESTING_CREDENTIALS['password'],
+        mail=settings.CLIENT_TESTING_CREDENTIALS['mail'],
         alerts=[cpu_alert, memory_alert]
     )
 
