@@ -1,11 +1,11 @@
 import os
 import paramiko
-import utils
+from hawkeye import utils
 import base64
 from Crypto.Cipher import PKCS1_OAEP
 import logging
 
-from settings import SMTP_SENDER_EMAIL
+from hawkeye.settings import SMTP_SENDER_EMAIL
 
 logging.getLogger().setLevel(logging.INFO)
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
@@ -43,13 +43,13 @@ class Client:
         
         It creates a subdirectory in the client's home directory
         then uploads the script to it
-        :param script_name: name of the script to be executed
+        :param script_name: name of the script to be executed assuming it resides in ./scripts
         """
         sftp_client = self.connection.open_sftp()
         sftp_client.chdir(os.path.expanduser('~'))
         if not ('.hawkeye' in sftp_client.listdir()):
             sftp_client.mkdir('.hawkeye')
-        local_path = os.getcwd() + '/source/scripts/{0}'.format(script_name)
+        local_path = os.getcwd() + '/scripts/{0}'.format(script_name)
         remote_path = './.hawkeye/{0}'.format(script_name)
         logging.info('Client(%s): Uploaded %s script', self.ip_address, script_name)
         return sftp_client.put(local_path, remote_path)
