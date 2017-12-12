@@ -2,9 +2,9 @@ import xmltodict
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 from client import Client
-import settings
+from hawkeye import settings
 from alert import Alert
-from utils.db_drivers.postgres_driver import PostgresDriver
+from hawkeye.utils.db_drivers.postgres_driver import PostgresDriver
 import json
 import logging
 
