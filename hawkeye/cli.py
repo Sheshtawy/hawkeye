@@ -1,5 +1,5 @@
 import argparse
-from server import Hawkeye
+from hawkeye.server import Hawkeye
 
 def main():
     """Run the module."""

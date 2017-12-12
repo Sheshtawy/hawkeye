@@ -1,7 +1,5 @@
 #!/usr/bin/env python
-
-from distutils import setup
-from setuptools import find_packages
+from setuptools import setup, find_packages
 
 with open('Readme.md') as readme:
     long_description = readme.read()
