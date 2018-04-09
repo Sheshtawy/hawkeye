@@ -1,0 +1,22 @@
+version: '3'
+services:
+  python:
+    tty: true
+    stdin_open: true
+    container_name: hawkeye
+    build:
+      context: .
+    depends_on:
+      - mysql
+    volumes:
+      - .:/src:rw
+    links: 
+      - mysql:mysql
+    entrypoint: '/bin/bash'
+  mysql:
+    image: "mysql:5.7"
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: test
+
+
